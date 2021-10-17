@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
                   child: const Text(
                     'Oeschinen Lake Campground',
                     style: TextStyle(
-                    fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
@@ -32,36 +32,36 @@ class MyApp extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.grey[500],
                   ),
-               ),
+                ),
               ],
             ),
           ),
-         FavoriteWidget(),
+          FavoriteWidget(),
         ],
       ),
     );
-  Color color = Theme.of(context).primaryColor;
+    Color color = Theme.of(context).primaryColor;
 
-  Widget buttonSection = Row(
-    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    children: [
-      _buildButtonColumn(color, Icons.call, 'CALL'),
-      _buildButtonColumn(color, Icons.near_me, 'ROUTE'),
-      _buildButtonColumn(color, Icons.share, 'SHARE'),
-    ],
-  );
-  Widget textSection = const Padding(
-    padding: EdgeInsets.all(32),
-    child: Text(
-      'Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese '
-      'Alps. Situated 1,578 meters above sea level, it is one of the '
-      'larger Alpine Lakes. A gondola ride from Kandersteg, followed by a '
-      'half-hour walk through pastures and pine forest, leads you to the '
-      'lake, which warms to 20 degrees Celsius in the summer. Activities '
-      'enjoyed here include rowing, and riding the summer toboggan run.',
-      softWrap: true,
-   ),
-  );
+    Widget buttonSection = Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        _buildButtonColumn(color, Icons.call, 'CALL'),
+        _buildButtonColumn(color, Icons.near_me, 'ROUTE'),
+        _buildButtonColumn(color, Icons.share, 'SHARE'),
+      ],
+    );
+    Widget textSection = const Padding(
+      padding: EdgeInsets.all(32),
+      child: Text(
+        'Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese '
+        'Alps. Situated 1,578 meters above sea level, it is one of the '
+        'larger Alpine Lakes. A gondola ride from Kandersteg, followed by a '
+        'half-hour walk through pastures and pine forest, leads you to the '
+        'lake, which warms to 20 degrees Celsius in the summer. Activities '
+        'enjoyed here include rowing, and riding the summer toboggan run.',
+        softWrap: true,
+      ),
+    );
     return MaterialApp(
       title: 'Flutter layout demo',
       home: Scaffold(
@@ -69,18 +69,18 @@ class MyApp extends StatelessWidget {
           title: const Text('Flutter layout demo'),
         ),
         body: ListView(
-            children: [
-              Image.asset(
-                'images/lake.jpg',
-                width: 600,
-                height: 240,
-                fit: BoxFit.cover,
-              ),
-              titleSection,
-              buttonSection,
-              textSection,
-            ],
-          ),
+          children: [
+            Image.asset(
+              'images/lake.jpg',
+              width: 600,
+              height: 240,
+              fit: BoxFit.cover,
+            ),
+            titleSection,
+            buttonSection,
+            textSection,
+          ],
+        ),
       ),
     );
   }
@@ -106,8 +106,9 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 class FavoriteWidget extends StatefulWidget {
-  const FavoriteWidget({ Key? key }) : super(key: key);
+  const FavoriteWidget({Key? key}) : super(key: key);
 
   @override
   _FavoriteWidgetState createState() => _FavoriteWidgetState();
@@ -115,7 +116,7 @@ class FavoriteWidget extends StatefulWidget {
 
 class _FavoriteWidgetState extends State<FavoriteWidget> {
   bool _isFavorited = true;
-  int _favoriteCount = 41; 
+  int _favoriteCount = 41;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -142,6 +143,7 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
       ],
     );
   }
+
   void _toggleFavorite() {
     setState(() {
       if (_isFavorited) {

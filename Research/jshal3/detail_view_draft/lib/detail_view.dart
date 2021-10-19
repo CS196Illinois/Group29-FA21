@@ -17,14 +17,9 @@ Event sampleEvent = Event(
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vitae velit augue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
 );
 
-class DetailView extends StatefulWidget {
-  const DetailView({Key? key}) : super(key: key);
+class DetailView extends StatelessWidget {
+  DetailView({Key? key}) : super(key: key);
 
-  @override
-  _DetailViewState createState() => _DetailViewState();
-}
-
-class _DetailViewState extends State<DetailView> {
   Widget descriptionSection = Padding(
     padding: const EdgeInsets.all(32),
     child: Text(

@@ -20,13 +20,7 @@ Event sampleEvent = Event(
 class DetailView extends StatelessWidget {
   DetailView({Key? key}) : super(key: key);
 
-  Widget descriptionSection = Padding(
-    padding: const EdgeInsets.all(32),
-    child: Text(
-      sampleEvent.description,
-      softWrap: true,
-    ),
-  );
+  Event event = sampleEvent;
 
   Divider divider = const Divider(
     height: 20,
@@ -35,28 +29,12 @@ class DetailView extends StatelessWidget {
     endIndent: 20,
   );
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(sampleEvent.name)),
-      body: ListView(
-        children: <Widget>[
-          sampleEvent
-              .image!, //MAKE SURE TO ADD LOGIC TO CHECK IF IMAGE IS NULL OR NOT
-          _buildAllInfoRows(),
-          divider,
-          descriptionSection,
-        ],
-      ),
-    );
-  }
-
   Widget _buildAllInfoRows() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        _buildInfoRow(Icons.location_city, sampleEvent.location),
-        _buildInfoRow(Icons.access_time, sampleEvent.date.toString()),
+        _buildInfoRow(Icons.location_city, event.location),
+        _buildInfoRow(Icons.access_time, event.date.toString()),
       ],
     );
   }
@@ -67,6 +45,28 @@ class DetailView extends StatelessWidget {
         Icon(icon),
         Text(label),
       ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text(event.name)),
+      body: ListView(
+        children: <Widget>[
+          event
+              .image!, //MAKE SURE TO ADD LOGIC TO CHECK IF IMAGE IS NULL OR NOT
+          _buildAllInfoRows(),
+          divider,
+          Padding(
+            padding: const EdgeInsets.all(32),
+            child: Text(
+              event.description,
+              softWrap: true,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

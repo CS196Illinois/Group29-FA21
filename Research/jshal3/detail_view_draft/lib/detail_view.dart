@@ -8,7 +8,7 @@ Image img = Image.asset(
   fit: BoxFit.cover,
 );
 
-Event sampleEvent = Event(
+final Event sampleEvent = Event(
   image: img,
   name: "Sample Name",
   location: "Sample Location",
@@ -48,6 +48,16 @@ class DetailView extends StatelessWidget {
     );
   }
 
+  // TODO: Try to fix error that results from calling even in descriptionSection
+
+  // Widget descriptionSection = Padding(
+  //   padding: const EdgeInsets.all(32),
+  //   child: Text(
+  //     event.description,
+  //     softWrap: true,
+  //   )
+  // );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,6 +68,9 @@ class DetailView extends StatelessWidget {
               .image!, //MAKE SURE TO ADD LOGIC TO CHECK IF IMAGE IS NULL OR NOT
           _buildAllInfoRows(),
           divider,
+
+          // Temp fix for missing descriptionSection
+
           Padding(
             padding: const EdgeInsets.all(32),
             child: Text(

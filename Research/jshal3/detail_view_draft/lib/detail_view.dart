@@ -48,7 +48,7 @@ class DetailView extends StatelessWidget {
     );
   }
 
-  // TODO: Try to fix error that results from calling even in descriptionSection
+  // TODO: Try to fix error that results from calling event in descriptionSection
 
   // Widget descriptionSection = Padding(
   //   padding: const EdgeInsets.all(32),

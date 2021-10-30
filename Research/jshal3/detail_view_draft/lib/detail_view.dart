@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'event.dart';
+import 'package:date_format/date_format.dart';
 
 Image img = Image.asset(
   'images/lake.jpg',
@@ -40,6 +41,12 @@ class DetailView extends StatelessWidget {
         padding: const EdgeInsets.all(8));
   }
 
+  String getDate(DateTime dt) {
+    int month = dt.month;
+    int day = dt.day;
+    DateFormat
+  }
+
   Widget _buildAllInfoRows() {
     return Container(
         child: Column(
@@ -49,7 +56,7 @@ class DetailView extends StatelessWidget {
             _buildInfoRow(Icons.access_time, event.date.toString()),
           ],
         ),
-        padding: EdgeInsets.all(32));
+        padding: const EdgeInsets.all(32));
   }
 
   Widget _buildInfoRow(IconData icon, String label) {
@@ -60,7 +67,7 @@ class DetailView extends StatelessWidget {
           Text(label),
         ],
       ),
-      padding: EdgeInsets.all(8),
+      padding: const EdgeInsets.all(8),
     );
   }
 

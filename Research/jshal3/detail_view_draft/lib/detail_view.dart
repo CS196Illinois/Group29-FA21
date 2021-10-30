@@ -29,22 +29,38 @@ class DetailView extends StatelessWidget {
     endIndent: 20,
   );
 
+  Container getImageContainer() {
+    return Container(
+        decoration: BoxDecoration(
+          border: Border.all(
+            width: 16,
+          ),
+        ),
+        child: event.image,
+        padding: const EdgeInsets.all(8));
+  }
+
   Widget _buildAllInfoRows() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        _buildInfoRow(Icons.location_city, event.location),
-        _buildInfoRow(Icons.access_time, event.date.toString()),
-      ],
-    );
+    return Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            _buildInfoRow(Icons.location_city, event.location),
+            _buildInfoRow(Icons.access_time, event.date.toString()),
+          ],
+        ),
+        padding: EdgeInsets.all(32));
   }
 
   Widget _buildInfoRow(IconData icon, String label) {
-    return Row(
-      children: <Widget>[
-        Icon(icon),
-        Text(label),
-      ],
+    return Container(
+      child: Row(
+        children: <Widget>[
+          Icon(icon),
+          Text(label),
+        ],
+      ),
+      padding: EdgeInsets.all(8),
     );
   }
 
@@ -64,8 +80,7 @@ class DetailView extends StatelessWidget {
       appBar: AppBar(title: Text(event.name)),
       body: ListView(
         children: <Widget>[
-          event
-              .image!, //MAKE SURE TO ADD LOGIC TO CHECK IF IMAGE IS NULL OR NOT
+          getImageContainer(), //MAKE SURE TO ADD LOGIC TO CHECK IF IMAGE IS NULL OR NOT
           _buildAllInfoRows(),
           divider,
 

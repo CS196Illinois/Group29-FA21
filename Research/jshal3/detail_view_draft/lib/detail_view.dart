@@ -15,7 +15,7 @@ final Event sampleEvent = Event(
   image: img,
   name: "Dad's Weekend",
   location: "Grange Grove - \n1416 S 1st St, Champaign, IL 61820",
-  date: DateTime.now().add(const Duration(days: 30)),
+  date: DateTime(2021, 10, 30, 8, 30),
   description:
       " SCHEDULE: \n ☀️ 7 AM Grange Grove 🍺 Opens \n 8:30AM 👏 Illini Walk & 🌭 Grange Grove Tailgate 🍔 \n 🎟 9:30AM Gates Open \n 🇺🇸 10AM Marching Illini Performance \n 🏈 11AM Beat Rutgers & 🍾 Post Game",
 );

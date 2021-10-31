@@ -3,7 +3,7 @@ import 'event.dart';
 import 'package:date_format/date_format.dart';
 
 Image img = Image.asset(
-  'images/Grange_Grove_Tailgate_IMG_4674_34',
+  'images/Grange_Grove_Tailgate_IMG_4674_34.jpg',
   width: 600,
   height: 240,
   fit: BoxFit.cover,
@@ -41,11 +41,11 @@ class DetailView extends StatelessWidget {
         padding: const EdgeInsets.all(8));
   }
 
-  String getDate(DateTime dt) {
-    int month = dt.month;
-    int day = dt.day;
-    DateFormat
-  }
+  // String getDate(DateTime dt) {
+  //   int month = dt.month;
+  //   int day = dt.day;
+  //   DateFormat
+  // }
 
   Widget _buildAllInfoRows() {
     return Container(
@@ -102,6 +102,7 @@ class DetailView extends StatelessWidget {
           ),
         ],
       ),
+      backgroundColor: Colors.blueGrey,
     );
   }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'event.dart';
 import 'package:date_format/date_format.dart';
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 Image img = Image.asset(
   'images/Grange_Grove_Tailgate_IMG_4674_34.jpg',
@@ -41,11 +43,20 @@ class DetailView extends StatelessWidget {
         padding: const EdgeInsets.all(8));
   }
 
-  // String getDate(DateTime dt) {
-  //   int month = dt.month;
-  //   int day = dt.day;
-  //   DateFormat
-  // }
+  // -> July 10, 1996
+  String getDateString(DateTime dt) => DateFormat.yMMMMd("en_US").format(dt);
+
+  // -> 5:08 PM
+  String getTimeString(DateTime dt) => DateFormat.jm().format(dt);
+
+  // -> Tuesday
+  String getWeekdayString(DateTime dt) => DateFormat.E("en_US").format(dt);
+
+  // -> Wednesday, July 10, 1996
+  String getFullDateString(DateTime dt) {
+    DateFormat df = DateFormat("EEEE, MMMM d, yyyy");
+    return df.format(dt);
+  }
 
   Widget _buildAllInfoRows() {
     return Container(
@@ -102,7 +113,7 @@ class DetailView extends StatelessWidget {
           ),
         ],
       ),
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: Colors.black,
     );
   }
 }

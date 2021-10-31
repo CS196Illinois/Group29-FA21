@@ -77,10 +77,14 @@ class DetailView extends StatelessWidget {
       child: Row(
         children: <Widget>[
           Padding(padding: const EdgeInsets.all(8), child: Icon(icon)),
-          Text(label, style: TextStyle(fontWeight: FontWeight.bold)),
+          Text(
+            label,
+            style: TextStyle(fontWeight: FontWeight.bold),
+            textScaleFactor: 1.1,
+          ),
         ],
       ),
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.all(4),
     );
   }
 
@@ -113,10 +117,11 @@ class DetailView extends StatelessWidget {
           // Temp fix for missing descriptionSection
 
           Padding(
-            padding: const EdgeInsets.all(32),
+            padding: const EdgeInsets.all(16),
             child: Text(
               event.description,
               softWrap: true,
+              textScaleFactor: 1.1,
             ),
           ),
         ],

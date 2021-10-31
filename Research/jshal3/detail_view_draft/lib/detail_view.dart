@@ -36,12 +36,12 @@ class DetailView extends StatelessWidget {
     return Container(
         decoration: BoxDecoration(
           border: Border.all(
-            color: Colors.grey,
-            width: 16,
+            color: Colors.black,
+            width: 0,
           ),
         ),
         child: event.image,
-        padding: const EdgeInsets.all(8));
+        padding: const EdgeInsets.all(0));
   }
 
   // -> July 10, 1996

@@ -36,6 +36,7 @@ class DetailView extends StatelessWidget {
     return Container(
         decoration: BoxDecoration(
           border: Border.all(
+            color: Colors.grey,
             width: 16,
           ),
         ),
@@ -68,15 +69,15 @@ class DetailView extends StatelessWidget {
             _buildInfoRow(Icons.access_time, getTimeString(event.date)),
           ],
         ),
-        padding: const EdgeInsets.all(32));
+        padding: const EdgeInsets.all(16));
   }
 
   Widget _buildInfoRow(IconData icon, String label) {
     return Container(
       child: Row(
         children: <Widget>[
-          Icon(icon),
-          Text(label),
+          Padding(padding: const EdgeInsets.all(8), child: Icon(icon)),
+          Text(label, style: TextStyle(fontWeight: FontWeight.bold)),
         ],
       ),
       padding: const EdgeInsets.all(8),

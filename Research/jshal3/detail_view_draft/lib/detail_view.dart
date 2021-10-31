@@ -64,7 +64,8 @@ class DetailView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             _buildInfoRow(Icons.location_city, event.location),
-            _buildInfoRow(Icons.access_time, event.date.toString()),
+            _buildInfoRow(Icons.calendar_today, getFullDateString(event.date)),
+            _buildInfoRow(Icons.access_time, getTimeString(event.date)),
           ],
         ),
         padding: const EdgeInsets.all(32));
@@ -95,7 +96,13 @@ class DetailView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(event.name)),
+      appBar: AppBar(
+          title: Text(event.name),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back_ios, color: Colors.grey),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          backgroundColor: Colors.deepOrangeAccent),
       body: ListView(
         children: <Widget>[
           getImageContainer(), //MAKE SURE TO ADD LOGIC TO CHECK IF IMAGE IS NULL OR NOT
@@ -113,7 +120,6 @@ class DetailView extends StatelessWidget {
           ),
         ],
       ),
-      backgroundColor: Colors.black,
     );
   }
 }

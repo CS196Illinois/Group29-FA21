@@ -10,11 +10,11 @@ Image img = Image.asset(
 
 final Event sampleEvent = Event(
   image: img,
-  name: "Sample Name",
-  location: "Sample Location",
+  name: "Dad's Weekend",
+  location: "Grange Grove - \n1416 S 1st St, Champaign, IL 61820",
   date: DateTime.now().add(const Duration(days: 30)),
   description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vitae velit augue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+      " SCHEDULE: \n ☀️ 7 AM Grange Grove 🍺 Opens \n 8:30AM 👏 Illini Walk & 🌭 Grange Grove Tailgate 🍔 \n 🎟 9:30AM Gates Open \n 🇺🇸 10AM Marching Illini Performance \n 🏈 11AM Beat Rutgers & 🍾 Post Game",
 );
 
 class DetailView extends StatelessWidget {

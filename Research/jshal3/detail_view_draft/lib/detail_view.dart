@@ -3,7 +3,7 @@ import 'event.dart';
 import 'package:date_format/date_format.dart';
 
 Image img = Image.asset(
-  'images/lake.jpg',
+  'images/Grange_Grove_Tailgate_IMG_4674_34',
   width: 600,
   height: 240,
   fit: BoxFit.cover,

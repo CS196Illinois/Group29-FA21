@@ -24,10 +24,11 @@ class _MapState extends State<Map> {
   late Location location;
   late bool _serviceEnabled;
   late PermissionStatus _permissionGranted;
-
   CameraPosition _center =
       CameraPosition(target: SOURCE_LOCATION, zoom: CAMERA_ZOOM);
   bool isLoading = false;
+
+  Set<Marker> _markers = {    };
 
   @override
   void initState() {
@@ -77,6 +78,9 @@ class _MapState extends State<Map> {
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
+    setState(() {
+      
+    });
   }
 
   @override
@@ -88,23 +92,79 @@ class _MapState extends State<Map> {
           initialCameraPosition: _center,
           myLocationEnabled: true,
           myLocationButtonEnabled: true,
-        ),
-        /*Positioned(
-          right: 30,
-          bottom: 40,
-          child: IconButton(
-            icon: Icon(
-              Icons.gps_fixed,
-              size: 50.0 ,
-              color: Colors.lightBlue[600],
-              ), 
-            onPressed: () {}
-          ),
-        ),*/
+          onLongPress: _addMarker,
+          markers: (_markers),
+          
+        ),       
       ],
     );
   }
+
+  void _addMarker(LatLng pos) {
+    setState(() {
+      _markers.add(
+        Marker(
+          markerId: MarkerId(pos.toString()),
+          position: pos,
+          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+          draggable: true,
+          infoWindow: InfoWindow(
+            title: "My activity",
+            snippet: "click to add more info",
+            //onTap: ,
+          ),
+          
+        )
+      );
+    });
+  }
 }
+
+
+
+/*      Positioned(
+          left: 10.0,
+          bottom: 31.0,
+            child: IconButton(
+              highlightColor: Colors.black,
+              icon: Icon(
+                Icons.add_circle,
+                size:65,
+                color: Colors.lightBlue.withOpacity(0.5),                  
+              ), 
+            onPressed: () {}
+          ), 
+        ),
+*/
+
+
+/*
+showAlertDialog(BuildContext context) {
+        Widget cancelButton = FlatButton(
+          child: Text("Cancel"),
+          onPressed:  () {},
+        );
+        Widget continueButton = FlatButton(
+          child: Text("Continue"),
+          onPressed:  () {},
+        );
+        AlertDialog alert = AlertDialog(
+          title: Text("Create a new event"),
+          content: Text("Would you like to continue creating a new event at" + pos.toString() + " ?"),
+          actions: [
+            cancelButton,
+            continueButton,
+          ],
+        );
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+          return alert;       
+          },
+        );
+      }
+  */
+
 
 /*
 GoogleMapController mapController;

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'event.dart';
-import 'package:date_format/date_format.dart';
 import 'package:intl/intl.dart';
-import 'package:intl/date_symbol_data_local.dart';
 
 Image img = Image.asset(
   'images/Grange_Grove_Tailgate_IMG_4674_34.jpg',
@@ -23,14 +21,14 @@ final Event sampleEvent = Event(
 class DetailView extends StatelessWidget {
   DetailView({Key? key}) : super(key: key);
 
-  Event event = sampleEvent;
+  final Event event = sampleEvent;
 
-  Divider divider = const Divider(
-    height: 20,
-    thickness: 5,
-    indent: 20,
-    endIndent: 20,
-  );
+  Widget getDivider() => const Divider(
+        height: 20,
+        thickness: 5,
+        indent: 20,
+        endIndent: 20,
+      );
 
   Container getImageContainer() {
     return Container(
@@ -79,7 +77,7 @@ class DetailView extends StatelessWidget {
           Padding(padding: const EdgeInsets.all(8), child: Icon(icon)),
           Text(
             label,
-            style: TextStyle(fontWeight: FontWeight.bold),
+            style: const TextStyle(fontWeight: FontWeight.bold),
             textScaleFactor: 1.1,
           ),
         ],
@@ -88,15 +86,14 @@ class DetailView extends StatelessWidget {
     );
   }
 
-  // TODO: Try to fix error that results from calling event in descriptionSection
-
-  // Widget descriptionSection = Padding(
-  //   padding: const EdgeInsets.all(32),
-  //   child: Text(
-  //     event.description,
-  //     softWrap: true,
-  //   )
-  // );
+  Widget getDescriptionSection() => Padding(
+        padding: const EdgeInsets.all(16),
+        child: Text(
+          event.description,
+          softWrap: true,
+          textScaleFactor: 1.1,
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +101,7 @@ class DetailView extends StatelessWidget {
       appBar: AppBar(
           title: Text(event.name),
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios, color: Colors.grey),
+            icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
             onPressed: () => Navigator.of(context).pop(),
           ),
           backgroundColor: Colors.deepOrangeAccent),
@@ -112,18 +109,8 @@ class DetailView extends StatelessWidget {
         children: <Widget>[
           getImageContainer(), //MAKE SURE TO ADD LOGIC TO CHECK IF IMAGE IS NULL OR NOT
           _buildAllInfoRows(),
-          divider,
-
-          // Temp fix for missing descriptionSection
-
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: Text(
-              event.description,
-              softWrap: true,
-              textScaleFactor: 1.1,
-            ),
-          ),
+          getDivider(),
+          getDescriptionSection(),
         ],
       ),
     );

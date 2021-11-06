@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -8,7 +9,6 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,6 +18,24 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(title: const Text("Group 29")),
+        body: StreamBuilder(
+          stream: FirebaseFirestore.instance.collection('events').snapshots(),
+          builder: (
+            BuildContext context,
+            AsyncSnapshot<QuerySnapshot> snapshot,
+          ) {
+            if (!snapshot.hasData) return const CircularProgressIndicator();
+            return ListView.builder(
+              itemCount: snapshot.data!.docs.length,
+              itemBuilder: (BuildContext context, int index) {
+                final docData = snapshot.data!.docs[index].data()!;
+                return ListTile(
+                  title: Text(docData.toString()),
+                );
+              },
+            );
+          },
+        ),
       ),
     );
   }

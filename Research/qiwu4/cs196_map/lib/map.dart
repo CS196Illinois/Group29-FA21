@@ -123,7 +123,11 @@ class _MapState extends State<Map> {
                       leading: Icon(Icons.add),
                       title: Text('Add information'),
                       onTap: (){
-                        Navigator.pop(context);
+                        //Navigator.pop(context);
+                        Navigator.push(
+                          context, 
+                          MaterialPageRoute(builder:(context) => const AddInfo()),
+                        );
                       }     
                     ),
 
@@ -150,5 +154,19 @@ class _MapState extends State<Map> {
         
       );
     });
+  }
+}
+
+class AddInfo extends StatelessWidget {
+  const AddInfo({ Key? key }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Add Your Activity Info"),
+      ),
+      
+    );
   }
 }

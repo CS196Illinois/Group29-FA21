@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'event.dart';
 import 'package:intl/intl.dart';
@@ -19,9 +20,27 @@ final Event sampleEvent = Event(
 );
 
 class DetailView extends StatelessWidget {
-  DetailView({Key? key}) : super(key: key);
+  Event event;
 
-  final Event event = sampleEvent;
+  DetailView({required this.event});
+
+  CollectionReference _collRef =
+      FirebaseFirestore.instance.collection("events");
+
+  Future<void> getData(int index) async {
+    QuerySnapshot snapshot = await _collRef.get();
+    final data = snapshot.docs[index];
+    final String name = data.get("name");
+    final String description = data.get("description");
+    final String location = data.get("location");
+    final DateTime datetime = data.get("datetime");
+    this.event = Event(
+      name: name,
+      description: description,
+      location: location,
+      date: datetime,
+    );
+  }
 
   Widget getDivider() => const Divider(
         height: 20,

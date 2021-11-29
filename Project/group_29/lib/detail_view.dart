@@ -77,6 +77,7 @@ class DetailView extends StatelessWidget {
   }
 
   Widget _buildAllInfoRows() {
+    getData(0);
     return Container(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -20,9 +20,9 @@ final Event sampleEvent = Event(
 );
 
 class DetailView extends StatelessWidget {
-  Event event;
+  Event? event;
 
-  DetailView({required this.event});
+  DetailView({this.event});
 
   CollectionReference _collRef =
       FirebaseFirestore.instance.collection("events");
@@ -57,7 +57,7 @@ class DetailView extends StatelessWidget {
             width: 0,
           ),
         ),
-        child: event.image,
+        child: event?.image,
         padding: const EdgeInsets.all(0));
   }
 
@@ -77,49 +77,55 @@ class DetailView extends StatelessWidget {
   }
 
   Widget _buildAllInfoRows() {
-    getData(0);
-    return Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            _buildInfoRow(Icons.location_city, event.location),
-            _buildInfoRow(Icons.calendar_today, getFullDateString(event.date)),
-            _buildInfoRow(Icons.access_time, getTimeString(event.date)),
-          ],
-        ),
-        padding: const EdgeInsets.all(16));
+    return event != null
+        ? Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                _buildInfoRow(Icons.location_city, event!.location),
+                _buildInfoRow(
+                    Icons.calendar_today, getFullDateString(event!.date)),
+                _buildInfoRow(Icons.access_time, getTimeString(event!.date)),
+              ],
+            ),
+            padding: const EdgeInsets.all(16))
+        : CircularProgressIndicator();
   }
 
   Widget _buildInfoRow(IconData icon, String label) {
-    return Container(
-      child: Row(
-        children: <Widget>[
-          Padding(padding: const EdgeInsets.all(8), child: Icon(icon)),
-          Text(
-            label,
-            style: const TextStyle(fontWeight: FontWeight.bold),
-            textScaleFactor: 1.1,
-          ),
-        ],
-      ),
-      padding: const EdgeInsets.all(4),
-    );
+    return event != null
+        ? Container(
+            child: Row(
+              children: <Widget>[
+                Padding(padding: const EdgeInsets.all(8), child: Icon(icon)),
+                Text(
+                  label,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  textScaleFactor: 1.1,
+                ),
+              ],
+            ),
+            padding: const EdgeInsets.all(4),
+          )
+        : CircularProgressIndicator();
   }
 
-  Widget getDescriptionSection() => Padding(
-        padding: const EdgeInsets.all(16),
-        child: Text(
-          event.description,
-          softWrap: true,
-          textScaleFactor: 1.1,
-        ),
-      );
+  Widget getDescriptionSection() => event != null
+      ? Padding(
+          padding: const EdgeInsets.all(16),
+          child: Text(
+            event!.description,
+            softWrap: true,
+            textScaleFactor: 1.1,
+          ),
+        )
+      : CircularProgressIndicator();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text(event.name),
+          title: Text(event == null ? "Loading..." : event!.name),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
             onPressed: () => Navigator.of(context).pop(),

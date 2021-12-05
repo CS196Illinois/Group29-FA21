@@ -42,6 +42,24 @@ class DetailView extends StatelessWidget {
     );
   }
 
+  Future<void> getDataFromID(String id) async {
+    QuerySnapshot snapshot = await _collRef.get();
+    final docs = snapshot.docs;
+    final dataCol = docs.where((doc) => doc.id == id);
+    if (dataCol.isEmpty) event = null;
+    final data = dataCol.elementAt(0);
+    final String name = data.get("name");
+    final String description = data.get("description");
+    final String location = data.get("location");
+    final DateTime datetime = data.get("datetime");
+    this.event = Event(
+      name: name,
+      description: description,
+      location: location,
+      date: datetime,
+    );
+  }
+
   Widget getDivider() => const Divider(
         height: 20,
         thickness: 5,
